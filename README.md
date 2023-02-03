@@ -1,7 +1,7 @@
 Participants:
 
 - Sheline Man
-    - hello
+    - good morning
 - Mina Oizumi
 - Ryder Pham
 - Amy Zhang
