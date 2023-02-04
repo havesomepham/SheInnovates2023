@@ -34,10 +34,11 @@ with mp_hands.Hands(
                     mp_hands.HAND_CONNECTIONS,
                     mp_drawing_styles.get_default_hand_landmarks_style(),
                     mp_drawing_styles.get_default_hand_connections_style())
-                print(hand_landmarks)
+                print(hand_landmarks.landmark[4].x, hand_landmarks.landmark[4].y)
 
         # Flip the image horizontally for a selfie-view display.
         cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
+        # cv2.imshow('MediaPipe Hands', image)
         # Enter key 'q' to break the loop
         if cv2.waitKey(5) & 0xFF == ord('q'):
             break
