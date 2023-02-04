@@ -14,14 +14,14 @@ while(True):
     
     
       
-    b = frame[:, :, :1]
-    g = frame[:, :, 1:2]
-    r = frame[:, :, 2:]
+    # b = frame[:, :, :1]
+    # g = frame[:, :, 1:2]
+    # r = frame[:, :, 2:]
   
     # computing the mean
-    b_mean = np.mean(b)
-    g_mean = np.mean(g)
-    r_mean = np.mean(r)
+    r_mean = frame[540][960][0]
+    g_mean = frame[540][960][1]
+    b_mean = frame[540][960][2]
   
     # print(round(r_mean), round(g_mean), round(b_mean))
     for row in frame:
