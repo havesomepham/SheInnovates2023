@@ -1,5 +1,5 @@
 import numpy as np
-pixel = np.array([0,1,2])
 
-row = np.tile(pixel, (10,1))
-print(row)
+test = np.array([[1,2],[3,4]])
+
+print(test[1,2])
