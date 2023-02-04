@@ -8,3 +8,6 @@ Participants:
 - Amy Zhang
     - lalalall
 
+Installation
+1. Clone this repository to your local machine
+2. Run `pip install -r requirements.txt`
