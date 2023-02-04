@@ -5,4 +5,5 @@ Participants:
 - Mina Oizumi
 - Ryder Pham
 - Amy Zhang
+    - lalalall
 
