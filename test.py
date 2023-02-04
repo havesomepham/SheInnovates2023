@@ -43,8 +43,7 @@ while (True):
     pixel = np.array([r_mean, g_mean, b_mean])
 
     frame[:] = pixel
-    
-    color = "R:" + str(int(pixel[0])) + " G:" + str(int(pixel[1])) + " B:" + str(int(pixel[2]))
+    color = "R:" + str(int(pixel[2])) + " G:" + str(int(pixel[1])) + " B:" + str(int(pixel[0]))
     
     frame = cv2.putText(frame, color, (0, int(height/2)), fontFace=1, fontScale=10, color=(100,100,100), thickness=10)
     # Display the resulting frame
