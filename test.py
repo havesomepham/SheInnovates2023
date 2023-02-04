@@ -12,15 +12,20 @@ while (True):
     # Capture the video frame
     # by frame
     ret, frame = vid.read()
-
+    
+    # this doesn't work as it should
     # b = frame[:, :, :1]
     # g = frame[:, :, 1:2]
     # r = frame[:, :, 2:]
-
-    # computing the mean
+  
+    # b_mean = np.mean(b)
+    # g_mean = np.mean(g)
+    # r_mean = np.mean(r)
+    
     r_mean = frame[int(height/2)][int(width/2)][0]
     g_mean = frame[int(height/2)][int(width/2)][1]
     b_mean = frame[int(height/2)][int(width/2)][2]
+    
     pixel = np.array([r_mean, g_mean, b_mean])
 
     frame[:] = pixel
