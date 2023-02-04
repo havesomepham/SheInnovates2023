@@ -3,14 +3,13 @@ import cv2
 import numpy as np  
   
 # define a video capture object
-vid = cv2.VideoCapture(1)
+vid = cv2.VideoCapture(0)
   
 while(True):
       
     # Capture the video frame
     # by frame
     ret, frame = vid.read()
-    frame = cv2.flip(frame, 1) 
     
     height = len(frame)
     width = len(frame[0])
