@@ -12,16 +12,17 @@ while(True):
     ret, frame = vid.read()
     frame = cv2.flip(frame, 1) 
     
-    
+    height = len(frame)
+    width = len(frame[0])
       
     # b = frame[:, :, :1]
     # g = frame[:, :, 1:2]
     # r = frame[:, :, 2:]
   
     # computing the mean
-    r_mean = frame[540][960][0]
-    g_mean = frame[540][960][1]
-    b_mean = frame[540][960][2]
+    r_mean = frame[int(height/2)][int(width/2)][0]
+    g_mean = frame[int(height/2)][int(width/2)][1]
+    b_mean = frame[int(height/2)][int(width/2)][2]
   
     # print(round(r_mean), round(g_mean), round(b_mean))
     for row in frame:
