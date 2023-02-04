@@ -28,10 +28,11 @@ while (True):
     # b_mean = frame[int(height/2)][int(width/2)][2]
 
     # mean calculation version C (small-area)
-    ymin = int(height/2 - 20)
-    ymax = int(height/2 + 20)
-    xmin = int(width/2 - 20)
-    xmax = int(width/2 + 20)
+    tol = 20
+    ymin = int(height/2 - tol)
+    ymax = int(height/2 + tol)
+    xmin = int(width/2 - tol)
+    xmax = int(width/2 + tol)
     r = frame[ymin:ymax, xmin:xmax, 0]
     g = frame[ymin:ymax, xmin:xmax, 1]
     b = frame[ymin:ymax, xmin:xmax, 2]
