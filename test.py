@@ -1,6 +1,6 @@
 # import the opencv library
 import cv2
-  
+import numpy as np  
   
 # define a video capture object
 vid = cv2.VideoCapture(1)
@@ -11,9 +11,26 @@ while(True):
     # by frame
     ret, frame = vid.read()
     frame = cv2.flip(frame, 1) 
+    
+    
+      
+    b = frame[:, :, :1]
+    g = frame[:, :, 1:2]
+    r = frame[:, :, 2:]
+  
+    # computing the mean
+    b_mean = np.mean(b)
+    g_mean = np.mean(g)
+    r_mean = np.mean(r)
+  
+    # print(round(r_mean), round(g_mean), round(b_mean))
+    for row in frame:
+        for pixel in row:
+            pixel[0] = r_mean
+            pixel[1] = g_mean
+            pixel[2] = b_mean
     # Display the resulting frame
     cv2.imshow('frame', frame)
-      
     # the 'q' button is set as the
     # quitting button you may use any
     # desired button of your choice
