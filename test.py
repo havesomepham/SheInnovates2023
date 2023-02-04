@@ -13,7 +13,7 @@ while (True):
     # by frame
     ret, frame = vid.read()
 
-    # mean calculation version A (total mean)
+    # mean calculation version A (total mean) ---------
     # r = frame[:, :, :1]
     # g = frame[:, :, 1:2]
     # b = frame[:, :, 2:]
@@ -22,13 +22,13 @@ while (True):
     # g_mean = np.mean(g)
     # b_mean = np.mean(b)
 
-    # mean calculation version B (single-pixel)
+    # mean calculation version B (single-pixel) -------
     # r_mean = frame[int(height/2)][int(width/2)][0]
     # g_mean = frame[int(height/2)][int(width/2)][1]
     # b_mean = frame[int(height/2)][int(width/2)][2]
 
-    # mean calculation version C (small-area)
-    tol = 20
+    # mean calculation version C (small-area) ---------
+    tol = 100 # size of height/width of sample area
     ymin = int(height/2 - tol)
     ymax = int(height/2 + tol)
     xmin = int(width/2 - tol)
@@ -43,7 +43,10 @@ while (True):
     pixel = np.array([r_mean, g_mean, b_mean])
 
     frame[:] = pixel
-
+    
+    color = "R:" + str(int(pixel[0])) + " G:" + str(int(pixel[1])) + " B:" + str(int(pixel[2]))
+    
+    frame = cv2.putText(frame, color, (0, int(height/2)), fontFace=1, fontScale=10, color=(100,100,100), thickness=10)
     # Display the resulting frame
     cv2.imshow('frame', frame)
     # the 'q' button is set as the
