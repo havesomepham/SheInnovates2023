@@ -6,11 +6,9 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
 
 
-
-
-def printdist(landmark1, landmark2):
+def dist(landmark1, landmark2):
     dist = 100 * math.sqrt((landmark1.x - landmark2.x)**2 + (landmark1.y - landmark2.y)**2)
-    print(dist)
+    return dist
 
 # For webcam input:
 cap = cv2.VideoCapture(1)
@@ -42,7 +40,19 @@ with mp_hands.Hands(
                     mp_hands.HAND_CONNECTIONS,
                     mp_drawing_styles.get_default_hand_landmarks_style(),
                     mp_drawing_styles.get_default_hand_connections_style())
-                printdist(hand_landmarks.landmark[4],hand_landmarks.landmark[8])
+                TIP_1 = hand_landmarks.landmark[4]
+                TIP_2 = hand_landmarks.landmark[8]
+                TIP_3 = hand_landmarks.landmark[12]
+                TIP_4 = hand_landmarks.landmark[16]
+                TIP_5 = hand_landmarks.landmark[20]
+                # if dist(TIP_1, TIP_2) > 25:
+                #     print("Zoom in")
+                # else:
+                #     print("Nothing")
+                if dist(TIP_1, TIP_5) > 35:
+                    print("Pause")
+                else:
+                    print("No action")
 
         
         # Flip the image horizontally for a selfie-view display.
