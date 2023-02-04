@@ -1,4 +1,5 @@
-a, b = 1
+import numpy as np
+pixel = np.array([0,1,2])
 
-print(a)
-print(b)
+row = np.tile(pixel, (10,1))
+print(row)
