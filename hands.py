@@ -6,6 +6,11 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
 xvals = []
+timecounter = 0
+text = ""
+persistence = 5
+fontsize = 10
+diff = 10
 
 def dist(landmark1, landmark2):
     dist = 100 * math.sqrt((landmark1.x - landmark2.x)**2 + (landmark1.y - landmark2.y)**2)
@@ -34,6 +39,7 @@ with mp_hands.Hands(
         image.flags.writeable = True
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         
+        cv2.rectangle(image, (100, 960), (1900, 850), (0,0,0), -1)
         if results.multi_hand_landmarks:
             for hand_landmarks in results.multi_hand_landmarks:
                 mp_drawing.draw_landmarks(
@@ -57,25 +63,46 @@ with mp_hands.Hands(
                 # else:
                 #     print("No action")
                 
-                xvals.append(TIP_2.x)
+                
+                xvals.append(TIP_2.x) # change which finger is tracked
                 if (len(xvals) < 10):
                     break
-                elif xvals[-5] == None or xvals[-1] == None:
+                elif xvals[-diff] == None or xvals[-1] == None:
                     break
                 else:
-                    if -20 <= (xvals[-1] - xvals[-5]) * 100 <= 20:
-                        image = cv2.putText(image, " ", (810,960), fontFace=1, fontScale=12, thickness=10, color=(255,255,255)) 
-                    elif (xvals[-1] - xvals[-5]) * 100 > 20:
+                    if timecounter == 0:
+                        if (xvals[-1] - xvals[-diff]) * 100 > 20:
+                            image = cv2.flip(image, 1)
+                            text = "GO BACK 5sec"
+                            image = cv2.putText(image, text, (100,960), fontFace=1, fontScale=fontsize, thickness=10, color=(255,255,255))
+                            image = cv2.flip(image, 1)
+                        elif (xvals[-1] - xvals[-diff]) * 100 < -20:
+                            image = cv2.flip(image, 1)
+                            text = "GO FORWARD 5sec"
+                            image = cv2.putText(image, text, (100,960), fontFace=1, fontScale=fontsize, thickness=10, color=(255,255,255))
+                            image = cv2.flip(image, 1)
+                        else:
+                            text = " "
+                            image = cv2.putText(image, text, (100,960), fontFace=1, fontScale=fontsize, thickness=10, color=(255,255,255))
+                    else:
                         image = cv2.flip(image, 1)
-                        image = cv2.putText(image, "GO BACK 5sec", (100,960), fontFace=1, fontScale=12, thickness=10, color=(255,255,255))
+                        image = cv2.putText(image, text, (100,960), fontFace=1, fontScale=fontsize, thickness=10, color=(255,255,255))
                         image = cv2.flip(image, 1)
-                    elif (xvals[-1] - xvals[-5]) * 100 < -20:
-                        image = cv2.flip(image, 1)
-                        image = cv2.putText(image, "GO FORWARD 5sec", (100,960), fontFace=1, fontScale=12, thickness=10, color=(255,255,255))
-                        image = cv2.flip(image, 1)
-                    print((xvals[-1] - xvals[-5]) * 100)
+                    timecounter += 1
+                    timecounter %= persistence
+                    
+                    print((xvals[-1] - xvals[-diff]) * 100)
         else:
             xvals.append(None)
+            if timecounter == 0:
+                text = " "
+                image = cv2.putText(image, text, (100,960), fontFace=1, fontScale=fontsize, thickness=10, color=(255,255,255))
+            else:
+                image = cv2.flip(image, 1)
+                image = cv2.putText(image, text, (100,960), fontFace=1, fontScale=fontsize, thickness=10, color=(255,255,255))
+                image = cv2.flip(image, 1)
+            timecounter += 1
+            timecounter %= persistence
         # Flip the image horizontally for a selfie-view display.
         cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
         # cv2.imshow('MediaPipe Hands', image)
