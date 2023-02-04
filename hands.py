@@ -1,8 +1,16 @@
 import cv2
 import mediapipe as mp
+import math
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
+
+
+
+
+def printdist(landmark1, landmark2):
+    dist = 100 * math.sqrt((landmark1.x - landmark2.x)**2 + (landmark1.y - landmark2.y)**2)
+    print(dist)
 
 # For webcam input:
 cap = cv2.VideoCapture(1)
@@ -34,8 +42,9 @@ with mp_hands.Hands(
                     mp_hands.HAND_CONNECTIONS,
                     mp_drawing_styles.get_default_hand_landmarks_style(),
                     mp_drawing_styles.get_default_hand_connections_style())
-                print(hand_landmarks.landmark[4].x, hand_landmarks.landmark[4].y)
+                printdist(hand_landmarks.landmark[4],hand_landmarks.landmark[8])
 
+        
         # Flip the image horizontally for a selfie-view display.
         cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
         # cv2.imshow('MediaPipe Hands', image)
