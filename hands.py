@@ -8,7 +8,7 @@ mp_hands = mp.solutions.hands
 xvals = []
 timecounter = 0
 text = ""
-persistence = 5
+persistence =  7
 fontsize = 10
 diff = 10
 
