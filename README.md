@@ -5,8 +5,8 @@ Using the webcam via OpenCV, we use a machine learning solution (MediaPipe) to d
 
 ## Installation
 1. Clone this repository to your local machine
-2. Run `pip3 install -r requirements.txt` in the directory containing this repo
-3. Run `python3 hands.py` in a terminal
+2. Run `pip3 install -r requirements.txt` in the directory of this repo
+3. Run `python3 hands.py` in the directory of this repo
 
 ## Presentation
 
