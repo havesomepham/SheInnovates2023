@@ -1,7 +1,7 @@
 # Motion-Activated Shortcuts: Hand Motion Detection via Webcam
 
 ## Project Description
-Using the webcam via OpenCV, we use a machine learning solutions (MediaPipe) to detect a hand and detect horizontal movement of a fingertip to activate a shortcut or action.
+Using the webcam via OpenCV, we use a machine learning solution (MediaPipe) to detect a hand and detect horizontal movement of a fingertip to activate a shortcut or action.
 
 ## Installation
 1. Clone this repository to your local machine
