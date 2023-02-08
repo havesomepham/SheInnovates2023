@@ -23,4 +23,6 @@ See [this link](https://docs.google.com/presentation/d/1cBaACA0gp1SQ001_vZ1TNCRx
 - Amy Zhang
   - First-year student at Pitt interested in DNID Critical Making Track
 
+## Devpost
 
+See [this link](https://devpost.com/software/motion-activated-shortcuts-hand-motion-detection-via-webcam).
